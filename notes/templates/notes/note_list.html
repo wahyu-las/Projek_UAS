@@ -1,0 +1,32 @@
+{% extends 'notes/base.html' %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h2>Daftar Catatan</h2>
+      <a href="{% url 'note_create' %}" class="btn btn-primary">+ Tambah Catatan Baru</a>
+    </div>
+    <div class="list-group">
+      {% for note in notes %}
+        <a href="{% url 'note_update' note.pk %}" class="list-group-item list-group-item-action">
+          {{ note.title }}
+        </a>
+      {% empty %}
+        <div class="list-group-item">
+          Anda belum memiliki catatan.
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    {% load socialaccount %}
+    <div class="card text-center p-5">
+      <div class="card-body">
+        <h5 class="card-title">Selamat Datang</h5>
+        <p class="card-text">Silakan login untuk melanjutkan.</p>
+        <a href="{% provider_login_url 'google' %}" class="btn btn-primary">
+          Login dengan Akun Google
+        </a>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
