@@ -1,0 +1,16 @@
+{% extends "notes/base.html" %}
+
+{% block title %}Sign In Via Google{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <h1>Sign In Via Google</h1>
+        <p class="lead">Anda akan dialihkan ke Google untuk melanjutkan proses login.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary btn-lg">Lanjutkan ke Google</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
